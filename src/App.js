@@ -11,26 +11,27 @@ function App(){
   const clickHandle=()=>{
     setArr([...arr,text]);
   }
-  const deleteList=()=>{
-
+  const deleteList=(taskName)=>{
+    setArr(arr.filter((task)=>task!==taskName));
   }
   return(
     <div className='App'>
       <div className="addTask">
-        <input onChange={handleChange}/>
-        <button onClick={clickHandle}>Add Task</button>
+        <input for="Add Task" onChange={handleChange}/>
+        <button placeholder='Add Task' onClick={clickHandle}>Add Task</button>
       </div>
       <div className="list">
-        {arr.map((value)=>{
+        {arr.map((task)=>{
           return (
             <div>
-              <h1>{value}</h1>
-              <button onClick={deleteList}>Delete</button>
+              <h1>{task}</h1>
+              <button onClick={()=>deleteList(task)}>Delete</button>
             </div>
           )
         })}
       </div>
     </div>
   );
+
 }
 export default App;
