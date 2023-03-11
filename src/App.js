@@ -11,6 +11,9 @@ function App(){
   const clickHandle=()=>{
     setArr([...arr,text]);
   }
+  const deleteList=()=>{
+
+  }
   return(
     <div className='App'>
       <div className="addTask">
@@ -19,7 +22,12 @@ function App(){
       </div>
       <div className="list">
         {arr.map((value)=>{
-          return <h1>{value}</h1>
+          return (
+            <div>
+              <h1>{value}</h1>
+              <button onClick={deleteList}>Delete</button>
+            </div>
+          )
         })}
       </div>
     </div>
