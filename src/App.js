@@ -22,10 +22,10 @@ function App(){
     setArr(arr.filter((value)=>value.id!==id));
   }
 
-  const completeTask=(props)=>{
+  const completeTask=(id)=>{
     setArr(
       arr.map((task)=>{
-        if(task.id===props.id){
+        if(task.id===id){
           return{...task,complete:true}
         }
         else{return task}
