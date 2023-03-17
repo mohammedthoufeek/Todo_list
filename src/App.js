@@ -1,5 +1,6 @@
 import './App.css';
 import {useState} from 'react';
+import {Task} from './Task';
 
 
 function App(){
@@ -8,12 +9,31 @@ function App(){
   const handleChange=(event)=>{
     setText(event.target.value);
   }
+
   const clickHandle=()=>{
-    setArr([...arr,text]);
+    const value={
+      id:arr.length===0?1:arr[arr.length-1].id+1,
+      task:text,
+      complete:false
+    }
+    setArr([...arr,value]);
   }
-  const deleteList=(taskName)=>{
-    setArr(arr.filter((task)=>task!==taskName));
+  const deleteList=(id)=>{
+    setArr(arr.filter((value)=>value.id!==id));
   }
+
+  const completeTask=(props)=>{
+    setArr(
+      arr.map((task)=>{
+        if(task.id===props.id){
+          return{...task,complete:true}
+        }
+        else{return task}
+      })
+    )
+  }
+
+
   return(
     <div className='App'>
       <div className="addTask">
@@ -22,12 +42,13 @@ function App(){
       </div>
       <div className="list">
         {arr.map((task)=>{
-          return (
-            <div>
-              <h1>{task}</h1>
-              <button onClick={()=>deleteList(task)}>Delete</button>
-            </div>
-          )
+          return <Task 
+          taskName={task.task} 
+          taskId={task.id} 
+          taskComplete={task.complete} 
+          deleteList={deleteList}
+          complete={completeTask}
+          />
         })}
       </div>
     </div>
@@ -35,3 +56,8 @@ function App(){
 
 }
 export default App;
+
+// usestate
+// useEffect
+// usenavigte
+// useref
