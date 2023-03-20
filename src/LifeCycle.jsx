@@ -15,7 +15,10 @@ const LifeCycle = () => {
 
     useEffect(()=>{
         console.log("Component Mounted"); 
-    })
+        return ()=>{
+            console.log("Component UnMounted");
+        }
+    },[show])
 
   return (
       <div style={{textAlign:"center"}}>
@@ -23,7 +26,7 @@ const LifeCycle = () => {
         {show && 
         <div>
             <input onChange={getText}/>
-            {text}
+            <h2>{text}</h2>
         </div>
         }
       </div>
